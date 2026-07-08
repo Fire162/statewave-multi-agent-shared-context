@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "statewave-agents"
+version = "0.1.0"
+description = "Reusable shared-context coordination for multi-agent LLM systems, built on Statewave."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "statewave>=0.8.0",
+    "litellm>=1.83.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/smaramwbc/statewave-multi-agent-shared-context"
+
+[tool.setuptools.packages.find]
+include = ["statewave_agents*"]

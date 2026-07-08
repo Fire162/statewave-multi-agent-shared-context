@@ -1,0 +1,17 @@
+.env
+.venv/
+.venv313/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.DS_Store
+node_modules/
+
+# Local agent / MCP client config — not committed
+CLAUDE.md
+.claude/
+.mcp.json
+.cursor/
+.vscode/mcp.json
+.github/copilot-instructions.md

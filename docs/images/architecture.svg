@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050512"/>
+      <stop offset="35%" stop-color="#10123a"/>
+      <stop offset="65%" stop-color="#241768"/>
+      <stop offset="100%" stop-color="#3a1f8f"/>
+    </linearGradient>
+    <linearGradient id="cardStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8a7bff"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="swCore" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4b3bf5"/>
+      <stop offset="100%" stop-color="#9d5bf0"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c9bfff"/>
+    </marker>
+    <marker id="arrowDim" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b6394"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="900" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="700" y="56" text-anchor="middle" fill="#ffffff" font-size="30" font-weight="600">statewave-multi-agent-shared-context — Architecture</text>
+  <text x="700" y="84" text-anchor="middle" fill="#b8aee8" font-size="15" font-style="italic">How three agents read and write one shared source of truth instead of passing messages</text>
+
+  <!-- ===================== Agent row ===================== -->
+  <g font-size="15">
+    <!-- Planner -->
+    <rect x="90" y="140" width="220" height="92" rx="14" fill="#12102c" stroke="url(#cardStroke)" stroke-width="1.6"/>
+    <text x="200" y="172" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="600">Planner</text>
+    <text x="200" y="196" text-anchor="middle" fill="#b8aee8" font-size="12.5">architectural decisions</text>
+    <text x="200" y="214" text-anchor="middle" fill="#8a80b8" font-size="11.5">agents/planner.py</text>
+
+    <!-- Coder -->
+    <rect x="590" y="140" width="220" height="92" rx="14" fill="#12102c" stroke="url(#cardStroke)" stroke-width="1.6"/>
+    <text x="700" y="172" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="600">Coder</text>
+    <text x="700" y="196" text-anchor="middle" fill="#b8aee8" font-size="12.5">implements features</text>
+    <text x="700" y="214" text-anchor="middle" fill="#8a80b8" font-size="11.5">agents/coder.py</text>
+
+    <!-- Reviewer -->
+    <rect x="1090" y="140" width="220" height="92" rx="14" fill="#12102c" stroke="url(#cardStroke)" stroke-width="1.6"/>
+    <text x="1200" y="172" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="600">Reviewer</text>
+    <text x="1200" y="196" text-anchor="middle" fill="#b8aee8" font-size="12.5">validates output</text>
+    <text x="1200" y="214" text-anchor="middle" fill="#8a80b8" font-size="11.5">agents/reviewer.py</text>
+  </g>
+
+  <!-- write arrows down to episodes -->
+  <path d="M200,232 L200,300" stroke="#c9bfff" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <path d="M700,232 L700,300" stroke="#c9bfff" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <path d="M1200,232 L1200,300" stroke="#c9bfff" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <text x="230" y="270" fill="#d8cfff" font-size="12">write_episode()</text>
+  <text x="730" y="270" fill="#d8cfff" font-size="12">write_episode()</text>
+  <text x="1160" y="270" fill="#d8cfff" font-size="12" text-anchor="end">get_context() first</text>
+
+  <!-- ===================== Statewave core band ===================== -->
+  <rect x="70" y="310" width="1260" height="260" rx="20" fill="#0c0a24" stroke="url(#swCore)" stroke-width="2"/>
+  <text x="700" y="342" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700" letter-spacing="0.5">Statewave — shared memory layer (one subject per run)</text>
+
+  <!-- three pipeline stages inside the band -->
+  <g font-size="14">
+    <!-- Episodes -->
+    <rect x="120" y="368" width="330" height="150" rx="12" fill="#171340" stroke="#5a4bd6" stroke-width="1.4"/>
+    <text x="285" y="396" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="600">Episodes</text>
+    <text x="285" y="418" text-anchor="middle" fill="#b8aee8" font-size="12">raw, append-only facts</text>
+    <text x="145" y="444" fill="#9d93cc" font-size="11.5">"Planner decided to deprecate</text>
+    <text x="145" y="460" fill="#9d93cc" font-size="11.5">legacy-session-token"</text>
+    <text x="285" y="500" text-anchor="middle" fill="#8a80b8" font-size="11">POST /v1/episodes · create_episode()</text>
+
+    <path d="M450,443 L525,443" stroke="#c9bfff" stroke-width="2.2" marker-end="url(#arrow)"/>
+    <text x="487" y="430" text-anchor="middle" fill="#d8cfff" font-size="11.5">compile()</text>
+
+    <!-- Memories -->
+    <rect x="535" y="368" width="330" height="150" rx="12" fill="#1d1148" stroke="#7c3aed" stroke-width="1.4"/>
+    <text x="700" y="396" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="600">Compiled Memories</text>
+    <text x="700" y="418" text-anchor="middle" fill="#c9b3ff" font-size="12">typed · confidence-scored</text>
+    <text x="560" y="444" fill="#b39ce0" font-size="11.5">[architectural_decision]</text>
+    <text x="560" y="460" fill="#b39ce0" font-size="11.5">confidence 0.92 · deprecate</text>
+    <text x="700" y="500" text-anchor="middle" fill="#8a80b8" font-size="11">POST /v1/memories/compile · compile_memories_wait()</text>
+
+    <path d="M865,443 L940,443" stroke="#c9bfff" stroke-width="2.2" marker-end="url(#arrow)"/>
+    <text x="902" y="430" text-anchor="middle" fill="#d8cfff" font-size="11.5">get_context()</text>
+
+    <!-- Context -->
+    <rect x="950" y="368" width="330" height="150" rx="12" fill="#241150" stroke="#9d5bf0" stroke-width="1.4"/>
+    <text x="1115" y="396" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="600">Ranked Context</text>
+    <text x="1115" y="418" text-anchor="middle" fill="#dcc8ff" font-size="12">assembled per caller + task</text>
+    <text x="975" y="444" fill="#c3a8f5" font-size="11.5">returned to any agent that</text>
+    <text x="975" y="460" fill="#c3a8f5" font-size="11.5">asks before it acts</text>
+    <text x="1115" y="500" text-anchor="middle" fill="#8a80b8" font-size="11">POST /v1/context · get_context()</text>
+  </g>
+
+  <!-- timeline note under band -->
+  <text x="700" y="552" text-anchor="middle" fill="#9d93cc" font-size="12" font-style="italic">Every write + read is attributed by caller_id — full chain replayable via GET /v1/timeline (timeline_inspector.py)</text>
+
+  <!-- arrows: Coder and Reviewer reading FROM context, before acting -->
+  <path d="M1115,368 C1115,300 1200,300 1200,300" stroke="#5a527e" stroke-width="1.6" stroke-dasharray="4 4" fill="none" marker-end="url(#arrowDim)"/>
+  <path d="M1115,368 C1000,300 800,300 700,232" stroke="#5a527e" stroke-width="1.6" stroke-dasharray="4 4" fill="none" marker-end="url(#arrowDim)"/>
+  <text x="960" y="300" fill="#8a80b8" font-size="11.5">read before writing / reviewing</text>
+
+  <!-- ===================== Bottom: naive vs statewave contrast ===================== -->
+  <g font-size="13">
+    <rect x="70" y="600" width="605" height="230" rx="16" fill="#1a0e14" stroke="#7a3a4a" stroke-width="1.4"/>
+    <text x="90" y="632" fill="#ff9db0" font-size="16" font-weight="700">BEFORE — naive message-passing</text>
+    <text x="90" y="662" fill="#e0b8c0" font-size="12.5">Planner → (message, maybe) → Coder</text>
+    <text x="90" y="684" fill="#e0b8c0" font-size="12.5">Coder has no shared source of truth —</text>
+    <text x="90" y="704" fill="#e0b8c0" font-size="12.5">rebuilds the deprecated module blind.</text>
+    <text x="90" y="734" fill="#e0b8c0" font-size="12.5">Reviewer finds the conflict only after</text>
+    <text x="90" y="754" fill="#e0b8c0" font-size="12.5">both agents have already finished.</text>
+    <text x="90" y="800" fill="#ff6b81" font-size="13.5" font-weight="700">Conflict detected — too late, compute wasted.</text>
+
+    <rect x="725" y="600" width="605" height="230" rx="16" fill="#0e1a14" stroke="#3a7a5a" stroke-width="1.4"/>
+    <text x="745" y="632" fill="#7dffc0" font-size="16" font-weight="700">AFTER — shared Statewave subject</text>
+    <text x="745" y="662" fill="#b8e0c8" font-size="12.5">Planner writes + compiles decision.</text>
+    <text x="745" y="684" fill="#b8e0c8" font-size="12.5">Coder calls get_context() FIRST,</text>
+    <text x="745" y="704" fill="#b8e0c8" font-size="12.5">sees the deprecation, skips the module.</text>
+    <text x="745" y="734" fill="#b8e0c8" font-size="12.5">Reviewer reads the same context —</text>
+    <text x="745" y="754" fill="#b8e0c8" font-size="12.5">nothing to catch, because nothing collided.</text>
+    <text x="745" y="800" fill="#4ade80" font-size="13.5" font-weight="700">Conflict prevented — before it happened.</text>
+  </g>
+
+  <text x="700" y="870" text-anchor="middle" fill="#6b6394" font-size="11.5">core/statewave_client.py wraps the official statewave SDK · run_id = Statewave subject_id</text>
+</svg>

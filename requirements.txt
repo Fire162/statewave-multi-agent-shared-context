@@ -1,0 +1,6 @@
+statewave>=0.8.0
+litellm>=1.83.7
+python-dotenv>=1.0.0
+rich>=13.7.0
+# litellm routes agent LLM calls to any provider — set LLM_MODEL to "<provider>/<model>" (core/llm.py wraps it)
+# statewave is the official SDK for the shared-memory runtime (core/statewave_client.py wraps it)
