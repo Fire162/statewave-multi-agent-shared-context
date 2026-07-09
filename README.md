@@ -7,6 +7,10 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](#requirements)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-green)](#license)
 
+> **Part of the Statewave ecosystem:** [Server](https://github.com/smaramwbc/statewave) · [Python SDK](https://github.com/smaramwbc/statewave-py) · [TypeScript SDK](https://github.com/smaramwbc/statewave-ts) · [Connectors](https://github.com/smaramwbc/statewave-connectors) · [Docs](https://github.com/smaramwbc/statewave-docs) · [Examples](https://github.com/smaramwbc/statewave-examples) · [Website + demo](https://statewave.ai) · [Admin](https://github.com/smaramwbc/statewave-admin)
+>
+> 📋 **Issues & feature requests:** tracked centrally on [`smaramwbc/statewave`](https://github.com/smaramwbc/statewave/issues) — Issues are disabled on this repo so all reports funnel to one place.
+
 Parallel agents that read from and write to the same authoritative context layer stop contradicting each other before the conflict happens.
 
 ## Table of Contents
